@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <body style="background-color: powderblue;"> 
+    <meta charset="UTF-8">
+
+    <style>
+        .testbtn {
+            background-color: #04AA6D;
+            color: white;
+            font-size: 15px;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .testbtn:hover {
+            background-color: #059862;
+        }
+
+        #numberA {
+            font-size: 24px;
+        }
+
+        #result {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>資三甲15號柯安澤</h1>
+
+    <!-- 顯示加法題目 -->
+    <p id="numberA"></p>
+
+    <!-- 輸入答案 -->
+    <input type="number" id="answer" placeholder="請輸入答案">
+
+    <!-- 顯示答題結果 -->
+    <p id="result"></p>
+
+    <!-- 顯示燈泡 -->
+    <img id="myImage"
+         src="pic/pic_bulboff.gif"
+         width="100"
+         height="180">
+
+    <br><br>
+
+    <!-- 確認答案按鈕 -->
+    <button class="testbtn" onclick="checkAnswer()">
+        確認答案
+    </button>
+
+    <script>
+        // 隨機產生 A 和 B
+        let A = Math.floor(Math.random() * 49) + 1;
+        let B = Math.floor(Math.random() * 49) + 1;
+
+        // 計算正確答案 C
+        let C = A + B;
+
+        // 顯示題目
+        document.getElementById("numberA").innerText =
+            A + " + " + B + " = ?";
+
+        // 判斷答案
+        function checkAnswer() {
+            let answer = document.getElementById("answer").value;
+
+            if (answer === "") {
+                document.getElementById("result").innerText =
+                    "錯誤";
+
+                light(0);
+
+            } else if (Number(answer) === C) {
+                document.getElementById("result").innerText =
+                    "答對了";
+
+                light(1);
+
+            } else {
+                document.getElementById("result").innerText =
+                    "錯誤";
+
+                light(0);
+            }
+        }
+
+        // 控制燈泡開關
+        function light(sw) {
+            let pic;
+
+            if (sw === 0) {
+                pic = "pic/pic_bulboff.gif";
+            } else {
+                pic = "pic/pic_bulbon.gif";
+            }
+
+            document.getElementById("myImage").src = pic;
+        }
+    </script>
+     <button class="testbtn" onclick="window.location.reload(); ">RESET</button>
+
+</body>
+</html>
